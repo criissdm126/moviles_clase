@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-   
+
         Toast.makeText(this, "Botón de retroceso desactivado", Toast.LENGTH_SHORT).show();
 
     }
