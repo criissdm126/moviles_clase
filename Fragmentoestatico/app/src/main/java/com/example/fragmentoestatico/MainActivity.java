@@ -1,5 +1,6 @@
 package com.example.fragmentoestatico;
 
+
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
