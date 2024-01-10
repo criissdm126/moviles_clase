@@ -2,12 +2,15 @@ package com.example.fragmentoestatico;
 
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,4 +25,12 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
     }
+
+    @Override
+    public void onBackPressed() {
+   
+        Toast.makeText(this, "Botón de retroceso desactivado", Toast.LENGTH_SHORT).show();
+
+    }
+
 }
