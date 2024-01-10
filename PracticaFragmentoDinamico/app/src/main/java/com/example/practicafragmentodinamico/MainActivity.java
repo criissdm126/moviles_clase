@@ -1,6 +1,5 @@
 package com.example.practicafragmentodinamico;
 
-
 import android.os.Bundle;
 import android.view.View;
 
