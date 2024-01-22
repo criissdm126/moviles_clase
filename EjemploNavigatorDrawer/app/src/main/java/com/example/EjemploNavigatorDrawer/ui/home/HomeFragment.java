@@ -10,7 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.EjemploNavigatorDrawer.databinding.FragmentHomeBinding;
+import com.example.ejemplonavigatordrawer.databinding.FragmentHomeBinding;
+
 
 public class HomeFragment extends Fragment {
 

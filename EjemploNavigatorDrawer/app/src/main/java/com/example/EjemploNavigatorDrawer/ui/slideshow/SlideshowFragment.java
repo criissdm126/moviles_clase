@@ -10,7 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.EjemploNavigatorDrawer.databinding.FragmentSlideshowBinding;
+import com.example.ejemplonavigatordrawer.databinding.FragmentSlideshowBinding;
+
 
 public class SlideshowFragment extends Fragment {
 
