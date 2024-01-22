@@ -16,5 +16,28 @@
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_slideshow" />
+        <item
+            android:id="@+id/itemFragmentList"
+            android:icon="@drawable/ic_menu_list_2"
+            android:title="Listado"
+            />
+        <item android:title="Comunication">
+            <menu>
+                <item
+                    android:id="@+id/fragmentVerde"
+                    android:icon="@drawable/ic_menu_share_2"
+                    android:title="Compartir"
+                />
+            </menu>
+        </item>
+        <item android:title="Other">
+            <menu>
+                <item
+                    android:id="@+id/fragmentExit"
+                    android:icon="@drawable/ic_menu_exit_to_app_2"
+                    android:title="Salir"
+                    />
+            </menu>
+        </item>
     </group>
 </menu>
