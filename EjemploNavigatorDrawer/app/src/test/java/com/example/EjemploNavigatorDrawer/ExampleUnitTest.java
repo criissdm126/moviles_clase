@@ -1,4 +1,4 @@
-package com.example.ejemplonavigatordrawer;
+package com.example.EjemploNavigatorDrawer;
 
 import org.junit.Test;
 

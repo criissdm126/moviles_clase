@@ -1,27 +1,31 @@
-package com.example.ejemplonavigatordrawer;
+package com.example.EjemploNavigatorDrawer;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import es.ciudadescolar.ejemplonavigatordrawer.placeholder.PlaceholderContent.PlaceholderItem;
-import es.ciudadescolar.ejemplonavigatordrawer.databinding.FragmentItemListBinding;
+import com.example.EjemploNavigatorDrawer.placeholder.PlaceholderContent;
+import com.example.ejemplonavigatordrawer.databinding.FragmentItemListBinding;
+
 
 import java.util.List;
 
 /**
- * {@link RecyclerView.Adapter} that can display a {@link PlaceholderItem}.
+ * {@link RecyclerView.Adapter} that can display a {@link PlaceholderContent.PlaceholderItem}.
  * TODO: Replace the implementation with code for your data type.
  */
 public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<PlaceholderItem> mValues;
+    private final List<PlaceholderContent.PlaceholderItem> mValues;
 
-    public MyItemRecyclerViewAdapter(List<PlaceholderItem> items) {
+    public MyItemRecyclerViewAdapter(List<PlaceholderContent.PlaceholderItem> items) {
         mValues = items;
+    }
+
+    public MyItemRecyclerViewAdapter(List<PlaceholderContent.PlaceholderItem> items, List<PlaceholderContent.PlaceholderItem> mValues) {
+        this.mValues = mValues;
     }
 
     @Override
@@ -46,7 +50,7 @@ public class MyItemRecyclerViewAdapter extends RecyclerView.Adapter<MyItemRecycl
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mIdView;
         public final TextView mContentView;
-        public PlaceholderItem mItem;
+        public PlaceholderContent.PlaceholderItem mItem;
 
         public ViewHolder(FragmentItemListBinding binding) {
             super(binding.getRoot());

@@ -1,9 +1,11 @@
-package com.example.ejemplonavigatordrawer;
+package com.example.EjemploNavigatorDrawer;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.ejemplonavigatordrawer.R;
+import com.example.ejemplonavigatordrawer.databinding.ActivityMainBinding;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -14,7 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
-import es.ciudadescolar.ejemplonavigatordrawer.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.ejemplonavigatordrawer;
+package com.example.EjemploNavigatorDrawer;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,7 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import es.ciudadescolar.ejemplonavigatordrawer.placeholder.PlaceholderContent;
+import com.example.EjemploNavigatorDrawer.placeholder.PlaceholderContent;
+import com.example.ejemplonavigatordrawer.R;
+
+
 
 /**
  * A fragment representing a list of Items.

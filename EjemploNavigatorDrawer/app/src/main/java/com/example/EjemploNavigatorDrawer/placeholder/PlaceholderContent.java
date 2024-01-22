@@ -1,4 +1,4 @@
-package com.example.ejemplonavigatordrawer.placeholder;
+package com.example.EjemploNavigatorDrawer.placeholder;
 
 
 import java.util.ArrayList;
