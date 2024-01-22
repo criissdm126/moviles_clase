@@ -22,4 +22,19 @@
         android:name="com.example.EjemploNavigatorDrawer.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/fragmentVerde"
+        android:name="com.example.EjemploNavigatorDrawer.FragmentVerde"
+        android:label="fragment_verde"
+        tools:layout="@layout/fragment_verde" />
+    <fragment
+        android:id="@+id/itemFragmentList"
+        android:name="com.example.EjemploNavigatorDrawer.ItemFragmentList"
+        android:label="fragment_item_list_list"
+        tools:layout="@layout/fragment_item_list_list" />
+    <fragment
+        android:id="@+id/fragmentExit"
+        android:name="com.example.EjemploNavigatorDrawer.FragmentExit"
+        android:label="fragment_exit"
+        tools:layout="@layout/fragment_exit" />
 </navigation>
