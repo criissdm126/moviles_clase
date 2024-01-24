@@ -1,93 +1,82 @@
 package com.example.permisosapp;
 
 import android.Manifest;
-import android.content.Context;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import android.content.pm.PackageManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 public class MainActivity extends AppCompatActivity {
-
-    private static final int STORAGE_PERMISSION_REQUEST_CODE = 1;
-    private static final int INTERNET_PERMISSION_REQUEST_CODE = 2;
-    private static final int CONTACTS_PERMISSION_REQUEST_CODE = 3;
-    private static final int LOCATION_PERMISSION_REQUEST_CODE = 4;
-
+    int CODIGO_RESPUESTA = 200;
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Comprobar y solicitar permisos en el hilo principal
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                checkAndRequestPermissions();
-            }
-        });
+        verificarPermisosSMS();
+        verificarPermisosContactos();
+        verificarPermisosFotos();
+        verificarPermisosGPS();
+        verificarPermisosInternet();
     }
-
-    private void checkAndRequestPermissions() {
-        // Comprobación de permisos de almacenamiento (fotos)
-        checkAndRequestPermission(
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                STORAGE_PERMISSION_REQUEST_CODE
-        );
-
-        // Comprobación de permisos de internet
-        checkAndRequestPermission(
-                Manifest.permission.INTERNET,
-                INTERNET_PERMISSION_REQUEST_CODE
-        );
-
-        // Comprobación de permisos de contactos
-        checkAndRequestPermission(
-                Manifest.permission.READ_CONTACTS,
-                CONTACTS_PERMISSION_REQUEST_CODE
-        );
-
-        // Comprobación de permisos de ubicación
-        checkAndRequestPermission(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                LOCATION_PERMISSION_REQUEST_CODE
-        );
-    }
-
-    private void checkAndRequestPermission(String permission, int requestCode) {
-        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-            // Si el permiso no está concedido, solicitarlo al usuario
-            ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
-            Toast.makeText(this, "Solicitando permiso: " + permission, Toast.LENGTH_SHORT).show();
+    private void verificarPermisosSMS() {
+        int permisoSMS = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.SEND_SMS);
+        if (permisoSMS == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Permiso SMS concedido",
+                    Toast.LENGTH_SHORT).show();
         } else {
-            // Permiso ya concedido
-            Toast.makeText(this, "Permiso " + permission + " ya concedido", Toast.LENGTH_SHORT).show();
+            requestPermissions(new
+                    String[]{Manifest.permission.SEND_SMS}, CODIGO_RESPUESTA);
+        }
+    }
+    private void verificarPermisosFotos(){
+        int permisoFotos = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permisoFotos == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Permiso acceso a fotos concedido",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            requestPermissions(new
+                            String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    CODIGO_RESPUESTA);
+        }
+    }
+    private void verificarPermisosInternet(){
+        int permisoInternet =
+                ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.INTERNET);
+        if (permisoInternet == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Permiso conexión a internet concedido", Toast.LENGTH_SHORT).show();
+        } else {
+            requestPermissions(new String[]{Manifest.permission.INTERNET}, CODIGO_RESPUESTA);
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            // Permiso concedido por el usuario
-            Toast.makeText(this, "Permiso concedido", Toast.LENGTH_SHORT).show();
+    private void verificarPermisosContactos(){
+        int permisoContactos =
+                ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.READ_CONTACTS);
+        if (permisoContactos == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Permiso a contactos concedido",
+                    Toast.LENGTH_SHORT).show();
         } else {
-            // Permiso denegado por el usuario
-            Toast.makeText(this, "Permiso denegado", Toast.LENGTH_SHORT).show();
+            requestPermissions(new
+                    String[]{Manifest.permission.READ_CONTACTS}, CODIGO_RESPUESTA);
         }
     }
-
-    private boolean isInternetConnected() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnected();
+    private void verificarPermisosGPS(){
+        int permisoGPS = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+        if (permisoGPS == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "Permiso al GPS concedido",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            requestPermissions(new
+                            String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    CODIGO_RESPUESTA);
+        }
     }
 }
