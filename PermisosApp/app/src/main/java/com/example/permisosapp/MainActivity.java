@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -35,20 +36,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkAndRequestPermissions() {
-        if (isInternetConnected()) {
-            checkAndRequestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_REQUEST_CODE);
-            checkAndRequestPermission(Manifest.permission.INTERNET, INTERNET_PERMISSION_REQUEST_CODE);
-            checkAndRequestPermission(Manifest.permission.READ_CONTACTS, CONTACTS_PERMISSION_REQUEST_CODE);
-            checkAndRequestPermission(Manifest.permission.ACCESS_FINE_LOCATION, LOCATION_PERMISSION_REQUEST_CODE);
-        } else {
-            // Mostrar mensaje de que no hay conexión a Internet
-        }
+        // Comprobación de permisos de almacenamiento (fotos)
+        checkAndRequestPermission(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                STORAGE_PERMISSION_REQUEST_CODE
+        );
+
+        // Comprobación de permisos de internet
+        checkAndRequestPermission(
+                Manifest.permission.INTERNET,
+                INTERNET_PERMISSION_REQUEST_CODE
+        );
+
+        // Comprobación de permisos de contactos
+        checkAndRequestPermission(
+                Manifest.permission.READ_CONTACTS,
+                CONTACTS_PERMISSION_REQUEST_CODE
+        );
+
+        // Comprobación de permisos de ubicación
+        checkAndRequestPermission(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                LOCATION_PERMISSION_REQUEST_CODE
+        );
     }
 
     private void checkAndRequestPermission(String permission, int requestCode) {
         if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
             // Si el permiso no está concedido, solicitarlo al usuario
             ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
+            Toast.makeText(this, "Solicitando permiso: " + permission, Toast.LENGTH_SHORT).show();
         } else {
             // Permiso ya concedido
             Toast.makeText(this, "Permiso " + permission + " ya concedido", Toast.LENGTH_SHORT).show();
