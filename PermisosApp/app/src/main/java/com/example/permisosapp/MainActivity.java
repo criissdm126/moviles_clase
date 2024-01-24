@@ -1,4 +1,5 @@
 package com.example.permisosapp;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -24,15 +25,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Comprobar y solicitar permisos
-        checkAndRequestPermissions();
+        // Comprobar y solicitar permisos en el hilo principal
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                checkAndRequestPermissions();
+            }
+        });
     }
 
     private void checkAndRequestPermissions() {
-        checkAndRequestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_REQUEST_CODE);
-        checkAndRequestPermission(Manifest.permission.INTERNET, INTERNET_PERMISSION_REQUEST_CODE);
-        checkAndRequestPermission(Manifest.permission.READ_CONTACTS, CONTACTS_PERMISSION_REQUEST_CODE);
-        checkAndRequestPermission(Manifest.permission.ACCESS_FINE_LOCATION, LOCATION_PERMISSION_REQUEST_CODE);
+        if (isInternetConnected()) {
+            checkAndRequestPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_REQUEST_CODE);
+            checkAndRequestPermission(Manifest.permission.INTERNET, INTERNET_PERMISSION_REQUEST_CODE);
+            checkAndRequestPermission(Manifest.permission.READ_CONTACTS, CONTACTS_PERMISSION_REQUEST_CODE);
+            checkAndRequestPermission(Manifest.permission.ACCESS_FINE_LOCATION, LOCATION_PERMISSION_REQUEST_CODE);
+        } else {
+            // Mostrar mensaje de que no hay conexión a Internet
+        }
     }
 
     private void checkAndRequestPermission(String permission, int requestCode) {
